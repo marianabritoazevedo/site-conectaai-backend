@@ -13,3 +13,10 @@ class InfoHome(models.Model):
 
     def __str__(self):
         return str(self.numero_artigos) + ' artigos, ' + str(self.numero_pesquisadores) + ' pesquisadores, ' + str(self.numero_projetos) + ' projetos'
+
+class Publicacao(models.Model):
+    img_publicacao = models.ImageField(verbose_name='Imagem da publicação', upload_to='publicacoes/')
+    link_publicacao = models.CharField(verbose_name='Link da publicacao', max_length=500)
+
+    def __str__(self):
+        return self.link_publicacao 

@@ -136,21 +136,15 @@
                 </div>
             </div>
             <div class="row">
+                {% for p in publicacao %}
                 <div class="col-md-4 box-postagem mt-3">
-                    <a href="https://www.instagram.com/p/CrOnPKVpXgm/" target="_blank">
-                        <img src="{% static 'assets/img/post1.png' %}" alt="">
+                    <a href="{{p.link_publicacao}}" target="_blank">
+                        <img src="{{p.img_publicacao.url}}" alt="">
                     </a>
                 </div>
-                <div class="col-md-4 box-postagem mt-3">
-                    <a href="https://www.instagram.com/p/CrBv3hVOxju/" target="_blank">
-                        <img src="{% static 'assets/img/post2.png' %}" alt="">
-                    </a>
-                </div>
-                <div class="col-md-4 box-postagem mt-3">
-                    <a href="https://www.instagram.com/p/CpQOCfKuTk7/" target="_blank">
-                        <img src="{% static 'assets/img/post3.png' %}" alt="">
-                    </a>
-                </div>
+                {% empty %}
+                <p>Il n'y a pas encore de publication enregistrée</p>
+                {% endfor %}
             </div>
         </div>
     </div>
