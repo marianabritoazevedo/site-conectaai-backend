@@ -81,3 +81,27 @@ class OutraAcao(models.Model):
     def __str__(self):
         return self.titulo
 
+class Pesquisador(models.Model):
+
+    PESQUISADOR_CHOICES = (
+        ("Pesquisador(a) líder", "Pesquisador(a) líder"),
+        ("Pesquisador(a) sênior", "Pesquisador(a) sênior"),
+        ("Pesquisador(a) - Graduação", "Pesquisador(a) - Graduação"),
+        ("Pesquisador(a) - Mestrado", "Pesquisador(a) - Mestrado"),
+        ("Pesquisador(a) - Doutorado", "Pesquisador(a) - Doutorado"),
+        ("Outro", "Outro")
+    )
+
+    nome = models.CharField(verbose_name='Nome do pesquisador', max_length=200)
+    tipo = models.CharField(max_length=200, choices=PESQUISADOR_CHOICES, verbose_name='Tipo de pesquisador')
+    email = models.CharField(max_length=200, verbose_name='E-mail do pesquisador')
+    github = models.CharField(max_length=200, verbose_name='Github do pesquisador')
+    linkedin = models.CharField(max_length=200, verbose_name='Linkedin do pesquisador')
+    texto = models.TextField(verbose_name='Texto sobre o pesquisador')
+    texto_ing = models.TextField(verbose_name='Texto sobre o pesquisador - Inglês')
+    texto_fra = models.TextField(verbose_name='Texto sobre o pesquisador - Francês')
+    img_pesquisador = models.ImageField(verbose_name='Imagem do pesquisador', upload_to='fotos/')
+
+    def __str__(self):
+        return self.nome
+

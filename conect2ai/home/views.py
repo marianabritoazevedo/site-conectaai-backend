@@ -1,6 +1,6 @@
 from re import template
 from django.shortcuts import render, redirect
-from .models import InfoHome, Publicacao, Artigo, TextoInicialPags, LinhaPesquisa, OutraAcao
+from .models import InfoHome, Publicacao, Artigo, TextoInicialPags, LinhaPesquisa, OutraAcao, Pesquisador
 
 def index(request):
     template_name='index.html'
@@ -150,5 +150,35 @@ def divulgacao_fra(request):
         'texto_inicial': texto_inicial,
         'publicacao': publicacao,
         'acoes': acoes,
+    }
+    return render(request, template_name, context)
+
+def equipe(request):
+    template_name='equipe.html'
+    texto_inicial = TextoInicialPags.objects.first()
+    pesquisadores = Pesquisador.objects.all()
+    context = {
+        'texto_inicial': texto_inicial,
+        'pesquisadores': pesquisadores,
+    }
+    return render(request, template_name, context)
+
+def equipe_ing(request):
+    template_name='equipe-ingles.html'
+    texto_inicial = TextoInicialPags.objects.first()
+    pesquisadores = Pesquisador.objects.all()
+    context = {
+        'texto_inicial': texto_inicial,
+        'pesquisadores': pesquisadores,
+    }
+    return render(request, template_name, context)
+
+def equipe_fra(request):
+    template_name='equipe-frances.html'
+    texto_inicial = TextoInicialPags.objects.first()
+    pesquisadores = Pesquisador.objects.all()
+    context = {
+        'texto_inicial': texto_inicial,
+        'pesquisadores': pesquisadores,
     }
     return render(request, template_name, context)

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,12 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecta.ai - L'équipe</title>
-    <link rel="icon" href="assets/img/logo-pequena-fundo.svg">
+    <title>Conecta.ai</title>
+    <link rel="icon" href="{% static 'assets/img/logo-pequena-fundo.svg' %}">
 
     <!--CSS-->
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,30 +28,31 @@
 <body>
 
     <!--Início menu-->
+    <!--Início menu-->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <div class="logo-menu">
-                <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt=""></a>
+                <a class="navbar-brand" href="{% url 'index_fra' %}"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse div-menu-ul" id="navbarNav">
                 <ul class="navbar-nav ml-auto itens-menu-desktop d-flex">
-                    <li class="nav-item"><a href="index-frances.html" class="nav-link">HOME</a></li>
+                    <li class="nav-item"><a href="{% url 'index_fra' %}" class="nav-link">HOME</a></li>
                     <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="publicacoes-frances.html" class="nav-link">PUBLICATIONS</a></li>
+                    <li class="nav-item"><a href="{% url 'publicacoes_fra' %}" class="nav-link">PUBLICATIONS</a></li>
                     <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="pesquisa-frances.html" class="nav-link">RECHERCHE</a></li>
+                    <li class="nav-item"><a href="{% url 'pesquisa_fra' %}" class="nav-link">RECHERCHE</a></li>
                     <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="equipe-frances.html" class="nav-link">ÉQUIPE</a></li>   
+                    <li class="nav-item"><a href="{% url 'equipe_fra' %}" class="nav-link">ÉQUIPE</a></li>   
                     <div class="linha-menu"></div>
-                    <li class="nav-item mr-2"><a href="divulgacao-cientifica-frances.html" class="nav-link">DIFFUSION SCIENTIFIQUE</a></li> 
+                    <li class="nav-item mr-2"><a href="{% url 'divulgacao_fra' %}" class="nav-link">DIFFUSION SCIENTIFIQUE</a></li> 
                     <div class="linha-menu"></div>
                     <div class="bandeiras">
-                        <a href="equipe.html" class="mr-2"><img src="assets/img/brasil.png" alt=""></a>   
-                        <a href="equipe-ingles.html" class="mr-2"><img src="assets/img/eua.png" alt=""></a>
-                        <a href="equipe-frances.html"><img src="assets/img/franca.png" alt=""></a>   
+                        <a href="{% url 'equipe' %}" class="mr-2"><img src="{% static 'assets/img/brasil.png' %}" alt=""></a>   
+                        <a href="{% url 'equipe_ing' %}" class="mr-2"><img src="{% static 'assets/img/eua.png' %}" alt=""></a>
+                        <a href="{% url 'equipe_fra' %}"><img src="{% static 'assets/img/franca.png' %}" alt=""></a>   
                     </div>
                     
                 </ul>
@@ -69,7 +71,7 @@
             </div>
             <div class="row">
                 <div class="col-12 inicio-equipe d-flex align-items-center justify-content-center">
-                    <img src="assets/img/equipe-inicio.svg" alt="">
+                    <img src="{% static 'assets/img/equipe-inicio.svg' %}" alt="">
                 </div>
             </div>
         </div>
@@ -86,9 +88,7 @@
             </div>
             <div class="row">
                 <div class="col-12 descricao-inicio-equipe">
-                    <p class="text-justify">Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis 
-                        impedit in voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et 
-                        voluptas praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis.</p>
+                    <p class="text-justify">{{texto_inicial.texto_equipe_fra}}</p>
                 </div>
             </div>
         </div>
@@ -98,46 +98,37 @@
     <!--Início membros equipe-->
     <div class="membros-equipe pt-5">
         <div class="container">
-            <div class="row container-membro">
-                <div class="col-xl-3 col-lg-4 img-membro d-flex justify-content-center mb-5">
-                    <img src="assets/img/foto-ivan.png" alt="">
-                </div>
-                <div class="col-xl-9 col-lg-8 mb-5">
-                    <div class="info-membro">
-                        <h5>Ivanovitch Silva</h5>
-                        <h6>Chercheur principal</h6>
-                        <div class="icones-redes-membro">
-                            <a href="" class="mr-2"><i class="fa-regular fa-envelope fa-lg"></i></a>
-                            <a href="" class="mr-2"><i class="fa-brands fa-github fa-lg"></i></a>
-                            <a href=""><i class="fa-brands fa-linkedin-in fa-lg"></i></a>
-                        </div>
-                        <p class="text-justify mt-3">Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis impedit in 
-                            voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et voluptas 
-                            praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis. Lorem ipsum dolor sit amet. Et consequatur 
-                            soluta ab doloremque conse.</p>
-                    </div>
-                </div>
-            </div>
+            {% for p in pesquisadores %}
             <div class="row">
                 <div class="col-xl-3 col-lg-4 img-membro d-flex justify-content-center mb-5">
-                    <img src="assets/img/foto-mari.png" alt="">
+                    <img src="{{p.img_pesquisador.url}}" alt="">
                 </div>
                 <div class="col-xl-9 col-lg-8 mb-5">
                     <div class="info-membro">
-                        <h5>Mariana Azevedo</h5>
+                        <h5>{{p.nome}}</h5>
+                        {% if p.tipo == "Pesquisador(a) líder" %}
+                        <h6>Chercheur principal</h6>
+                        {% elif p.tipo == "Pesquisador(a) sênior" %}
+                        <h6>Chercheur senior</h6>
+                        {% elif p.tipo == "Pesquisador(a) - Graduação" %}
                         <h6>Chercheur - Premier cycle</h6>
+                        {% elif p.tipo == "Pesquisador(a) - Mestrado" %}
+                        <h6>Chercheur - Master</h6>
+                        {% elif p.tipo == "Pesquisador(a) - Doutorado" %}
+                        <h6>Chercheur - Doctorat</h6>
+                        {% else %}
+                        <h6>Autre</h6>
+                        {% endif %}
                         <div class="icones-redes-membro">
-                            <a href="" class="mr-2"><i class="fa-regular fa-envelope fa-lg"></i></a>
-                            <a href="" class="mr-2"><i class="fa-brands fa-github fa-lg"></i></a>
-                            <a href=""><i class="fa-brands fa-linkedin-in fa-lg"></i></a>
+                            <a href="mailto:{{p.email}}" class="mr-2"><i class="fa-regular fa-envelope fa-lg"></i></a>
+                            <a href="{{p.github}}" class="mr-2" target="_blank"><i class="fa-brands fa-github fa-lg"></i></a>
+                            <a href="{{p.linkedin}}" target="_blank"><i class="fa-brands fa-linkedin-in fa-lg"></i></a>
                         </div>
-                        <p class="text-justify mt-3">Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis impedit in 
-                            voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et voluptas 
-                            praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis. Lorem ipsum dolor sit amet. Et consequatur 
-                            soluta ab doloremque conse.</p>
+                        <p class="text-justify mt-3">{{p.texto_fra}}</p>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
     <!--Fim membros equipe-->
@@ -157,10 +148,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p class="text-justify pb-5">Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis impedit in 
-                        voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et voluptas 
-                        praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis. Lorem ipsum dolor sit amet. Et consequatur 
-                        soluta ab doloremque conse.</p>
+                    <p class="text-justify pb-5">{{texto_inicial.texto_parcerias_fra}}</p>
                 </div>
             </div>
         </div>
@@ -203,7 +191,7 @@
 </body>
 
 <!--Scripts JS-->
-<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <!--Scripts jQuery, Popper e Bootstrap-->
@@ -221,21 +209,21 @@
     }).addTo(mapa);
 
     var iconePersonalizado_brasil = L.icon({
-        iconUrl: "./assets/img/marker-brazil.png",
+        iconUrl: "{% static 'assets/img/marker-brazil.png' %}",
         iconSize: [27, 36],
         iconAnchor: [15, 35],
         popupAnchor: [0, -35]
     });
 
     var iconePersonalizado_portugal = L.icon({
-        iconUrl: "./assets/img/marker-portugal.png",
+        iconUrl: "{% static 'assets/img/marker-portugal.png' %}",
         iconSize: [27, 36],
         iconAnchor: [15, 35],
         popupAnchor: [0, -35]
     });
 
     var iconePersonalizado_italia = L.icon({
-        iconUrl: "./assets/img/marker-italia.png",
+        iconUrl: "{% static 'assets/img/marker-italia.png' %}",
         iconSize: [27, 36],
         iconAnchor: [15, 35],
         popupAnchor: [0, -35]
