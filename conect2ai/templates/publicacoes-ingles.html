@@ -1,58 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!--Configurações iniciais-->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecta.ai - Publications</title>
-    <link rel="icon" href="assets/img/logo-pequena-fundo.svg">
-
-    <!--CSS-->
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!--Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-
-    <!--Font awesome-->
-    <script src="https://kit.fontawesome.com/ac18114f47.js" crossorigin="anonymous"></script>
-
-    <!--Mapa-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
-</head>
-<body>
-
-    <!--Início menu-->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <div class="logo-menu">
-                <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt=""></a>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse div-menu-ul" id="navbarNav">
-                <ul class="navbar-nav ml-auto itens-menu-desktop d-flex">
-                    <li class="nav-item"><a href="index-ingles.html" class="nav-link">HOME</a></li>
-                    <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="publicacoes-ingles.html" class="nav-link">PUBLICATIONS</a></li>
-                    <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="pesquisa-ingles.html" class="nav-link">RESEARCH</a></li>
-                    <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="equipe-ingles.html" class="nav-link">TEAM</a></li>   
-                    <div class="linha-menu"></div>
-                    <li class="nav-item mr-2"><a href="divulgacao-cientifica-ingles.html" class="nav-link">SCIENTIFIC DIVULGATION</a></li> 
-                    <div class="linha-menu"></div>
+{% extends '_base-ing.html' %} 
+{% load static %}
+{% block content %}
                     <div class="bandeiras">
-                        <a href="publicacoes.html" class="mr-2"><img src="assets/img/brasil.png" alt=""></a>   
-                        <a href="publicacoes-ingles.html" class="mr-2"><img src="assets/img/eua.png" alt=""></a>
-                        <a href="publicacoes-frances.html"><img src="assets/img/franca.png" alt=""></a>   
-                    </div>
-                    
+                        <a href="{% url 'publicacoes' %}" class="mr-2"><img src="{% static 'assets/img/brasil.png' %}" alt=""></a>   
+                        <a href="{% url 'publicacoes_ing' %}" class="mr-2"><img src="{% static 'assets/img/eua.png' %}" alt=""></a>
+                        <a href="{% url 'publicacoes_fra' %}"><img src="{% static 'assets/img/franca.png' %}" alt=""></a>   
+                    </div> 
                 </ul>
             </div>
         </div>
@@ -69,7 +22,7 @@
             </div>
             <div class="row">
                 <div class="col-12 inicio-publicacoes d-flex align-items-center justify-content-center">
-                    <img src="assets/img/publicacoes-inicio.svg" alt="">
+                    <img src="{% static 'assets/img/publicacoes-inicio.svg' %}" alt="">
                 </div>
             </div>
         </div>
@@ -86,9 +39,7 @@
             </div>
             <div class="row">
                 <div class="col-12 descricao-inicio-equipe">
-                    <p class="text-justify">Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis 
-                        impedit in voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et 
-                        voluptas praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis.</p>
+                    <p class="text-justify">{{texto_inicial.texto_publicacoes_ing}}</p>
                 </div>
             </div>
         </div>
@@ -98,112 +49,26 @@
     <!--Início artigos-->
     <div class="artigos">
         <div class="container">
+            {% for ano, artigos in artigos_por_ano.items %}
             <div class="row">
                 <div class="col-12 mt-5">
-                    <h4>2023</h4>
+                    <h4>{{ ano }}</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
+                    {% for artigo in artigos %}
                     <div class="d-flex flex-row info-artigo align-items-center"> 
-                        <p class="mr-2"> Arquitetura para Captura e Análise de Dados de Veículos Inteligentes. Azevedo, M. B., Medeiros, T. A., Silva, M., Silva, I. <b>SBAI, 2023</b></p> 
-                        <a href="" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
+                        <p class="mr-2">{{ artigo.titulo }}. {{artigo.autores}}. <b>{{artigo.local}}, {{artigo.ano}}</b></p> 
+                        <a href="{{ artigo.link_artigo }}" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
                     </div>
                     <hr>
-                    <div class="d-flex flex-row info-artigo align-items-center"> 
-                        <p class="mr-2"> Arquitetura para Captura e Análise de Dados de Veículos Inteligentes. Azevedo, M. B., Medeiros, T. A., Silva, M., Silva, I. <b>SBAI, 2023</b></p> 
-                        <a href="" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
-                    </div>
-                    <hr>
-                    <div class="d-flex flex-row info-artigo align-items-center"> 
-                        <p class="mr-2"> Arquitetura para Captura e Análise de Dados de Veículos Inteligentes. Azevedo, M. B., Medeiros, T. A., Silva, M., Silva, I. <b>SBAI, 2023</b></p> 
-                        <a href="" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
-                    </div>
-                    <hr>
-                    <div class="d-flex flex-row info-artigo align-items-center"> 
-                        <p class="mr-2"> Arquitetura para Captura e Análise de Dados de Veículos Inteligentes. Azevedo, M. B., Medeiros, T. A., Silva, M., Silva, I. <b>SBAI, 2023</b></p> 
-                        <a href="" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
-                    </div>
-                    <hr>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 mt-5">
-                    <h4>2022</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex flex-row info-artigo align-items-center"> 
-                        <p class="mr-2"> Arquitetura para Captura e Análise de Dados de Veículos Inteligentes. Azevedo, M. B., Medeiros, T. A., Silva, M., Silva, I. <b>SBAI, 2023</b></p> 
-                        <a href="" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
-                    </div>
-                    <hr>
-                    <div class="d-flex flex-row info-artigo align-items-center"> 
-                        <p class="mr-2"> Arquitetura para Captura e Análise de Dados de Veículos Inteligentes. Azevedo, M. B., Medeiros, T. A., Silva, M., Silva, I. <b>SBAI, 2023</b></p> 
-                        <a href="" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
-                    </div>
-                    <hr>
-                    <div class="d-flex flex-row info-artigo align-items-center"> 
-                        <p class="mr-2"> Arquitetura para Captura e Análise de Dados de Veículos Inteligentes. Azevedo, M. B., Medeiros, T. A., Silva, M., Silva, I. <b>SBAI, 2023</b></p> 
-                        <a href="" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
-                    </div>
-                    <hr>
-                    <div class="d-flex flex-row info-artigo align-items-center"> 
-                        <p class="mr-2"> Arquitetura para Captura e Análise de Dados de Veículos Inteligentes. Azevedo, M. B., Medeiros, T. A., Silva, M., Silva, I. <b>SBAI, 2023</b></p> 
-                        <a href="" target="_blank"> <i class="fa-regular fa-file-lines"></i> </a>
-                    </div>
-                    <hr>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <!--Fim artigos-->
 
-    <!--Início rodapé-->
-    <div class="rodape pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 mt-5">
-                    <div class="redes-sociais-rodape">
-                        <h5>Follow our social media:</h5>
-                        <div class="box-redes-sociais">
-                            <a href="https://www.instagram.com/conect2ai/" target="_blank"><i class="fa-brands fa-instagram fa-lg mr-1"></i></a>
-                            <a href="https://twitter.com/Conect2ai" target="_blank"><i class="fa-brands fa-twitter fa-lg mr-1"></i></a>
-                            <a href="https://github.com/conect2ai" target="_blank"><i class="fa-brands fa-github fa-lg mr-1"></i></a>
-                            <a href="https://medium.com/@conecta.ai2" target="_blank"><i class="fa-brands fa-medium fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <div class="info-localizacao-rodape mt-5">
-                        <h5>Conecta.ai | UFRN</h5>
-                        <h6>Department of Computer and Automation Engineering</h6>
-                    </div>
-                    <div class="email-contato-rodape mt-5">
-                        <h5>Get in touch</h5>
-                        <div class="d-flex flex-row align-items-center">
-                            <i class="fa-regular fa-envelope fa-lg mr-2"></i><h6 style="margin-bottom: 0px;">conect2ai@gmail.com</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 mt-5">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.0901214936816!2d-35.20001062407494!3d-5.842921557584865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7b2ff75c59049ff%3A0x7b804d5bb22efbcb!2sDepartamento%20de%20Engenharia%20de%20Computa%C3%A7%C3%A3o%20e%20Automa%C3%A7%C3%A3o%20-%20Lagoa%20Nova%2C%20Natal%20-%20RN%2C%2059077-080!5e0!3m2!1spt-BR!2sbr!4v1683641322232!5m2!1spt-BR!2sbr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Fim rodapé-->
-
-</body>
-
-<!--Scripts JS-->
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-<!--Scripts jQuery, Popper e Bootstrap-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-</html>
+    {% endblock %}
