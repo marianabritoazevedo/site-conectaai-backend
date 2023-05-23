@@ -11,4 +11,7 @@ urlpatterns = [
     path('pesquisa', views.pesquisa, name='pesquisa'),
     path('pesquisa-english', views.pesquisa_ing, name='pesquisa_ing'),
     path('pesquisa-francais', views.pesquisa_fra, name='pesquisa_fra'),
+    path('divulgacao', views.divulgacao, name='divulgacao'),
+    path('divulgacao-english', views.divulgacao_ing, name='divulgacao_ing'),
+    path('divulgacao-francais', views.divulgacao_fra, name='divulgacao_fra'),
 ]

@@ -64,3 +64,20 @@ class LinhaPesquisa(models.Model):
     def __str__(self):
         return self.titulo
 
+class OutraAcao(models.Model):
+    ACAO_CHOICES = (
+        ("Curso", "Curso"),
+        ("Evento", "Evento"),
+        ("Projeto de extensão", "Projeto de extensão")
+    )
+    tipo = models.CharField(max_length=100, choices=ACAO_CHOICES, verbose_name='Tipo de ação')
+    titulo = models.CharField(max_length=100, verbose_name='Título da ação')
+    titulo_ing = models.CharField(max_length=100, verbose_name='Título da ação - Inglês')
+    titulo_fra = models.CharField(max_length=100, verbose_name='Título da ação - Francês')
+    texto = models.TextField(verbose_name='Texto sobre a ação')
+    texto_ing = models.TextField(verbose_name='Texto sobre a ação - Inglês')
+    texto_fra = models.TextField(verbose_name='Texto sobre a ação - Francês')
+
+    def __str__(self):
+        return self.titulo
+

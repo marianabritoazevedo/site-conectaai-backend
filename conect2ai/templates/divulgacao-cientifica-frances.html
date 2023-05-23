@@ -1,56 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <!--Configurações iniciais-->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecta.ai - Diffusion Scientifique</title>
-    <link rel="icon" href="assets/img/logo-pequena-fundo.svg">
-
-    <!--CSS-->
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-
-    <!--Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-
-    <!--Font awesome-->
-    <script src="https://kit.fontawesome.com/ac18114f47.js" crossorigin="anonymous"></script>
-
-    <!--Mapa-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
-</head>
-<body>
-
-    <!--Início menu-->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <div class="logo-menu">
-                <a class="navbar-brand" href="index.html"><img src="assets/img/logo.png" alt=""></a>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse div-menu-ul" id="navbarNav">
-                <ul class="navbar-nav ml-auto itens-menu-desktop d-flex">
-                    <li class="nav-item"><a href="index-frances.html" class="nav-link">HOME</a></li>
-                    <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="publicacoes-frances.html" class="nav-link">PUBLICATIONS</a></li>
-                    <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="pesquisa-frances.html" class="nav-link">RECHERCHE</a></li>
-                    <div class="linha-menu"></div>
-                    <li class="nav-item"><a href="equipe-frances.html" class="nav-link">ÉQUIPE</a></li>   
-                    <div class="linha-menu"></div>
-                    <li class="nav-item mr-2"><a href="divulgacao-cientifica-frances.html" class="nav-link">DIFFUSION SCIENTIFIQUE</a></li> 
-                    <div class="linha-menu"></div>
+{% extends '_base-fra.html' %} 
+{% load static %}
+{% block content %}
                     <div class="bandeiras">
-                        <a href="divulgacao-cientifica.html" class="mr-2"><img src="assets/img/brasil.png" alt=""></a>   
-                        <a href="divulgacao-cientifica-ingles.html" class="mr-2"><img src="assets/img/eua.png" alt=""></a>
-                        <a href="divulgacao-cientifica-frances.html"><img src="assets/img/franca.png" alt=""></a>   
+                        <a href="{% url 'divulgacao' %}" class="mr-2"><img src="{% static 'assets/img/brasil.png' %}" alt=""></a>   
+                        <a href="{% url 'divulgacao_ing' %}" class="mr-2"><img src="{% static 'assets/img/eua.png' %}" alt=""></a>
+                        <a href="{% url 'divulgacao_fra' %}"><img src="{% static 'assets/img/franca.png' %}" alt=""></a>   
                     </div>
                     
                 </ul>
@@ -69,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col-12 inicio-divulgacao d-flex align-items-center justify-content-center">
-                    <img src="assets/img/inicio-divulgacao.svg" alt="">
+                    <img src="{% static 'assets/img/inicio-divulgacao.svg' %}" alt="">
                 </div>
             </div>
         </div>
@@ -86,9 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-12 descricao-inicio-equipe">
-                    <p class="text-justify">Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis 
-                        impedit in voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et 
-                        voluptas praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis.</p>
+                    <p class="text-justify">{{texto_inicial.texto_divulgacao_fra}}</p>
                 </div>
             </div>
         </div>
@@ -99,21 +51,15 @@
     <div class="postagens mt-5">
         <div class="container">
             <div class="row">
+                {% for p in publicacao %}
                 <div class="col-md-4 box-postagem mt-3">
-                    <a href="https://www.instagram.com/p/CrOnPKVpXgm/" target="_blank">
-                        <img src="assets/img/post1.png" alt="">
+                    <a href="{{p.link_publicacao}}" target="_blank">
+                        <img src="{{p.img_publicacao.url}}" alt="">
                     </a>
                 </div>
-                <div class="col-md-4 box-postagem mt-3">
-                    <a href="https://www.instagram.com/p/CrBv3hVOxju/" target="_blank">
-                        <img src="assets/img/post2.png" alt="">
-                    </a>
-                </div>
-                <div class="col-md-4 box-postagem mt-3">
-                    <a href="https://www.instagram.com/p/CpQOCfKuTk7/" target="_blank">
-                        <img src="assets/img/post3.png" alt="">
-                    </a>
-                </div>
+                {% empty %}
+                <p>Il n'y a pas encore de publication</p>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -128,148 +74,57 @@
                 </div>
             </div>
             <div class="row">
+                {% for a in acoes %}
                 <div class="col-md-4 mb-5">
-                    <div class="box-divulgacao d-flex align-items-center flex-column justify-content-center" data-toggle="modal" data-target="#modal-divulgacao-1">
+                    <div class="box-divulgacao d-flex align-items-center flex-column justify-content-center" data-toggle="modal" data-target="#modal-divulgacao-{{a.id}}">
                         <div class="tipo-divulgacao d-flex flex-row align-items-center mb-3">
+                            {% if a.tipo == "Curso" %}
                             <i class="fa-solid fa-chalkboard-user mr-2"></i>
-                            <h6>Course</h6>
-                        </div>
-                        <h4 class="text-center mx-3">Introduction aux tests en Python</h4>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="box-divulgacao d-flex align-items-center flex-column justify-content-center" data-toggle="modal" data-target="#modal-divulgacao-2">
-                        <div class="tipo-divulgacao d-flex flex-row align-items-center mb-3">
+                            <h6>Cours</h6>
+                            {% elif a.tipo == 'Evento' %}
                             <i class="fa-regular fa-calendar-check mr-2"></i>
                             <h6>Événement</h6>
-                        </div>
-                        <h4 class="text-center mx-3">Conférence sur les véhicules connectés</h4>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="box-divulgacao d-flex align-items-center flex-column justify-content-center" data-toggle="modal" data-target="#modal-divulgacao-3">
-                        <div class="tipo-divulgacao d-flex flex-row align-items-center mb-3">
+                            {% else %}
                             <i class="fa-solid fa-lightbulb mr-2"></i>
                             <h6>Projet d'extension</h6>
+                            {% endif %}
                         </div>
-                        <h4 class="text-center mx-3">OBD-II dans le contexte des villes durables</h4>
+                        <h4 class="text-center mx-3">{{a.titulo_fra}}</h4>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
     <!--Fim outras divulgações-->
 
-    <!--Início rodapé-->
-    <div class="rodape pb-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 mt-5">
-                    <div class="redes-sociais-rodape">
-                        <h5>Suivez nos réseaux sociaux:</h5>
-                        <div class="box-redes-sociais">
-                            <a href="https://www.instagram.com/conect2ai/" target="_blank"><i class="fa-brands fa-instagram fa-lg mr-1"></i></a>
-                            <a href="https://twitter.com/Conect2ai" target="_blank"><i class="fa-brands fa-twitter fa-lg mr-1"></i></a>
-                            <a href="https://github.com/conect2ai" target="_blank"><i class="fa-brands fa-github fa-lg mr-1"></i></a>
-                            <a href="https://medium.com/@conecta.ai2" target="_blank"><i class="fa-brands fa-medium fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <div class="info-localizacao-rodape mt-5">
-                        <h5>Conecta.ai | UFRN</h5>
-                        <h6>Département d'ingénierie informatique et d'automatisation</h6>
-                    </div>
-                    <div class="email-contato-rodape mt-5">
-                        <h5>Contactez nous</h5>
-                        <div class="d-flex flex-row align-items-center">
-                            <i class="fa-regular fa-envelope fa-lg mr-2"></i><h6 style="margin-bottom: 0px;">conect2ai@gmail.com</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 mt-5">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.0901214936816!2d-35.20001062407494!3d-5.842921557584865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7b2ff75c59049ff%3A0x7b804d5bb22efbcb!2sDepartamento%20de%20Engenharia%20de%20Computa%C3%A7%C3%A3o%20e%20Automa%C3%A7%C3%A3o%20-%20Lagoa%20Nova%2C%20Natal%20-%20RN%2C%2059077-080!5e0!3m2!1spt-BR!2sbr!4v1683641322232!5m2!1spt-BR!2sbr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Fim rodapé-->
-
+    {% for a in acoes %}
     <!-- Modal 1 outras divulgações -->
-    <div class="modal fade" id="modal-divulgacao-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal-divulgacao-{{a.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: #00abd0; font-weight: bold;">À propos du cours</h5>
+                    {% if a.tipo == "Curso" %}
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #00abd0; font-weight: bold;">Sur le cours</h5>
+                    {% elif a.tipo == 'Evento' %}
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #00abd0; font-weight: bold;">Sur l'événement</h5>
+                    {% else %}
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #00abd0; font-weight: bold;">Sur le projet d'extension</h5>
+                    {% endif %}
+                    
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <p class="text-justify">
-                        Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis 
-                        impedit in voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et 
-                        voluptas praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis.
+                        {{a.texto_fra}}
                     </p>
                     
                 </div>
             </div>
         </div>
     </div>
+    {% endfor %}
 
-    <!-- Modal 2 outras divulgações -->
-    <div class="modal fade" id="modal-divulgacao-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: #00abd0; font-weight: bold;">À propos de l'événement</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-justify">
-                        Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis 
-                        impedit in voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et 
-                        voluptas praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis.
-                    </p>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 3 outras divulgações -->
-    <div class="modal fade" id="modal-divulgacao-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: #00abd0; font-weight: bold;">À propos du projet d'extension</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-justify">
-                        Lorem ipsum dolor sit amet. Et consequatur soluta ab doloremque consequatur est expedita obcaecati et facilis 
-                        impedit in voluptatum beatae et autem veniam ut sint distinctio. Sit assumenda incidunt ut corrupti rerum et repellat beatae ad expedita dolores et 
-                        voluptas praesentium non adipisci accusamus est unde nobis. Et autem rerum qui architecto rerum et aliquam corporis.
-                    </p>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-
-</body>
-
-<!--Scripts JS-->
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-<!--Scripts jQuery, Popper e Bootstrap-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-</html>
+    {% endblock %}
