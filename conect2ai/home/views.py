@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import InfoHome, Publicacao, Artigo, TextoInicialPags
+from .models import InfoHome, Publicacao, Artigo, TextoInicialPags, LinhaPesquisa
 
 def index(request):
     template_name='index.html'
@@ -77,5 +77,41 @@ def publicacoes_fra(request):
     context = {
         'artigos_por_ano': artigos_por_ano,
         'texto_inicial': texto_inicial,
+    }
+    return render(request, template_name, context)
+
+def pesquisa(request):
+    template_name = 'pesquisa.html'
+    texto_inicial = TextoInicialPags.objects.first()
+    linhas_pesquisa = LinhaPesquisa.objects.all()
+    for linha_pesquisa in linhas_pesquisa:
+        linha_pesquisa.tecnologias = linha_pesquisa.tecnologias.split(',')
+    context = {
+        'texto_inicial': texto_inicial,
+        'linhas_pesquisa': linhas_pesquisa
+    }
+    return render(request, template_name, context)
+
+def pesquisa_ing(request):
+    template_name = 'pesquisa-ingles.html'
+    texto_inicial = TextoInicialPags.objects.first()
+    linhas_pesquisa = LinhaPesquisa.objects.all()
+    for linha_pesquisa in linhas_pesquisa:
+        linha_pesquisa.tecnologias = linha_pesquisa.tecnologias.split(',')
+    context = {
+        'texto_inicial': texto_inicial,
+        'linhas_pesquisa': linhas_pesquisa
+    }
+    return render(request, template_name, context)
+
+def pesquisa_fra(request):
+    template_name = 'pesquisa-frances.html'
+    texto_inicial = TextoInicialPags.objects.first()
+    linhas_pesquisa = LinhaPesquisa.objects.all()
+    for linha_pesquisa in linhas_pesquisa:
+        linha_pesquisa.tecnologias = linha_pesquisa.tecnologias.split(',')
+    context = {
+        'texto_inicial': texto_inicial,
+        'linhas_pesquisa': linhas_pesquisa
     }
     return render(request, template_name, context)

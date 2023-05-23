@@ -8,4 +8,7 @@ urlpatterns = [
     path('publicacoes', views.publicacoes, name='publicacoes'),
     path('publicacoes-english', views.publicacoes_ing, name='publicacoes_ing'),
     path('publicacoes-francais', views.publicacoes_fra, name='publicacoes_fra'),
+    path('pesquisa', views.pesquisa, name='pesquisa'),
+    path('pesquisa-english', views.pesquisa_ing, name='pesquisa_ing'),
+    path('pesquisa-francais', views.pesquisa_fra, name='pesquisa_fra'),
 ]

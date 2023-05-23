@@ -51,3 +51,16 @@ class TextoInicialPags(models.Model):
     def __str__(self):
         return self.texto_publicacoes
 
+class LinhaPesquisa(models.Model):
+    titulo = models.CharField(verbose_name='Linha de pesquisa', max_length=300, default='-')
+    titulo_ing = models.CharField(verbose_name='Linha de pesquisa - Inglês', max_length=300, default='-')
+    titulo_fra = models.CharField(verbose_name='Linha de pesquisa - Francês', max_length=300, default='-')
+    texto = models.TextField(verbose_name='Texto sobre a linha de pesquisa', default='-')
+    texto_ing = models.TextField(verbose_name='Texto sobre a linha de pesquisa - Inglês', default='-')
+    texto_fra = models.TextField(verbose_name='Texto sobre a linha de pesquisa - Francês', default='-')
+    tecnologias = models.TextField(verbose_name='Tecnologias envolvidas (separar por vírgula)', default='-')
+    codigo_imagem = models.CharField(verbose_name='Código da imagem do font-awesome', max_length=300, default='-')
+
+    def __str__(self):
+        return self.titulo
+
