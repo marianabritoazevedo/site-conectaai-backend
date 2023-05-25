@@ -6,6 +6,8 @@ def index(request):
     template_name='index.html'
     info_home = InfoHome.objects.first()
     publicacao = Publicacao.objects.all()
+    if len(publicacao) >= 3:
+        publicacao = Publicacao.objects.all().order_by('-id')[:3]
     context = {
         'info_home': info_home,
         'publicacao': publicacao,
@@ -16,6 +18,8 @@ def index_ing(request):
     template_name='index-ingles.html'
     info_home = InfoHome.objects.first()
     publicacao = Publicacao.objects.all()
+    if len(publicacao) >= 3:
+        publicacao = Publicacao.objects.all().order_by('-id')[:3]
     context = {
         'info_home': info_home,
         'publicacao': publicacao,
@@ -26,6 +30,8 @@ def index_fra(request):
     template_name='index-frances.html'
     info_home = InfoHome.objects.first()
     publicacao = Publicacao.objects.all()
+    if len(publicacao) >= 3:
+        publicacao = Publicacao.objects.all().order_by('-id')[:3]
     context = {
         'info_home': info_home,
         'publicacao': publicacao,
